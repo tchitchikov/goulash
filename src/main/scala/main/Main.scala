@@ -7,4 +7,6 @@ object Main extends App {
   var b = new Basic(d)
   println(b.mean())
   println(b.standardDeviation())
+  println(b.coefficientVariation())
+
 }
