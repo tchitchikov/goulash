@@ -24,12 +24,23 @@ class Basic(data: Array[Double]) {
   /* standardDeviation takes the sample standard deviation from data
    *   Args: None
    *   Returns:
-   *      σ (Double) = sqrt((Σ(x - mean)^2) / len(data) - 1)
+   *      σ (Double) = sqrt( Σ(x - μ)² / (len(data) - 1) )
   */
   def standardDeviation(): Double = {
     scala.math.sqrt(data.foldLeft (0.0) { (total, x) =>
         scala.math.pow(x - mean(), 2) + total
       }   /   (data.length - 1.0)
     )
+  }
+
+  /* variance takes the sample variance from data
+   *   Args: None
+   *   Returns:
+   *      σ² (Double) = Σ(x - μ)² / (len(data) - 1)
+  */
+  def variance(): Double = {
+    data.foldLeft (0.0) { (total, x) =>
+      scala.math.pow(x - mean(), 2) + total
+    }   /   (data.length - 1.0)
   }
 }

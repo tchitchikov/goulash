@@ -8,5 +8,5 @@ object Main extends App {
   println(b.mean())
   println(b.standardDeviation())
   println(b.coefficientVariation())
-
+  println(b.variance())
 }
