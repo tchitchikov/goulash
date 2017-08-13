@@ -40,8 +40,8 @@ class Pull:
             )
             df = pandas.read_csv(StringIO(requests.get(data_string).text))
             df['Return'] = df.Close - df.Close.shift(-1)
-            df['DailyPeriodicReturn'] = (df['Return'] / df.Close.shift(-1)) * 100
-            df['ContinuouslyCompoundingDailyPeriodicReturn'] = numpy.log(df.Close / df.Close.shift(-1)) * 100
+            df['DailyPeriodicReturn'] = (df['Return'] / df.Close.shift(-1))
+            df['ContinuouslyCompoundingDailyPeriodicReturn'] = numpy.log(df.Close / df.Close.shift(-1))
             df = df.fillna(0.0)
             results[ticker] = {
                 "symbol": ticker,

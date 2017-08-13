@@ -3,19 +3,16 @@ package data
 import com.mongodb.casbah.Imports._
 import scala.collection.mutable.ListBuffer
 
-class Data (tickers: List[String]){
+object Data {
   //  def manOf[T: Manifest](t: T): Manifest[T] = manifest[T]
   val mongoClient = MongoClient("localhost", 27017)
   val db = mongoClient("financial_data")
   val coll = db("data")
-  var coll_names = coll.find()
 
   def get_data(dataSetDimension: String): collection.mutable.Map[String, List[Double]] = {
     var m = collection.mutable.Map[String, List[Double]]()
-    coll_names.foreach{ d =>
-      var ticker = d("ticker").toString()
-      var close_price_list = d.as[BasicDBList](dataSetDimension).toList.map(_.toString.toDouble)
-      m(ticker) = close_price_list
+    coll.find().foreach{ d =>
+      m(d("ticker").toString()) = d.as[BasicDBList](dataSetDimension).toList.map(_.toString.toDouble)
     }
     m
   }

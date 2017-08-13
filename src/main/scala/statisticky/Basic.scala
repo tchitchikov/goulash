@@ -43,4 +43,11 @@ class Basic(data: List[Double]) {
       scala.math.pow(x - mean(), 2) + total
     }   /   (data.length - 1.0)
   }
+
+  /*
+   * random generates a random z score between 0 and 1
+   */
+  def gen_random(): Double = {
+    scala.util.Random.nextDouble()
+  }
 }

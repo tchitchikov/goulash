@@ -1,6 +1,7 @@
 package risk
 
 import statisticky.Basic
+import scala.collection.mutable.ListBuffer
 
 class Model(data: List[Double]) {
   var b = new Basic(data)
@@ -32,4 +33,17 @@ class Model(data: List[Double]) {
     b.mean() - (b.variance() / 2)
   }
 
+}
+
+class Simulation(data: Map[String, Double]) {
+  def monteCarloSimulation(): Double = {
+    var outcomes = new ListBuffer[Double]()
+    for (i <- 1 until 100000) {
+      var exponent = (data("μ_of_returns") - (data("σ²_of_returns") / 2)) + (data("σ_of_returns") * scala.util.Random.nextDouble())
+      var result = data("LastClose") * math.pow(math.E, exponent)
+      outcomes += result
+    }
+    var b = new Basic(outcomes.toList)
+    b.mean()
+  }
 }
