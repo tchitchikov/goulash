@@ -10,7 +10,7 @@ object Main extends App {
 
   for ((k,v) <- get.get_closing_prices()) {
     var rm = new Model(v)
-    println(k, rm.expected_return_historical())
+    println(k, rm.volatility_eroded_historical_mean())
 
   }
 
