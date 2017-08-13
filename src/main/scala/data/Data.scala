@@ -14,8 +14,8 @@ class Data (tickers: List[String]){
     var m = collection.mutable.Map[String, List[Double]]()
     coll_names.foreach{ d =>
       var ticker = d("ticker").toString()
-      var close_price_list = d.as[BasicDBList]("close_prices").toList
-      m(ticker) = close_price_list.map(_.toString.toDouble)
+      var close_price_list = d.as[BasicDBList]("returns").toList.map(_.toString.toDouble)
+      m(ticker) = close_price_list
     }
     m
   }

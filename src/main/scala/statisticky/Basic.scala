@@ -1,6 +1,6 @@
 package statisticky
 
-class Basic(data: Array[Double]) {
+class Basic(data: List[Double]) {
 
   /* coefficientVariation is the ratio of the standard deviation to the mean
      *   Args: None
