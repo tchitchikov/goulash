@@ -8,9 +8,11 @@ class Model(data: List[Double]) {
   def expected_return_historical(): Double = {
     b.mean()
   }
+
   def capitalAssetPricing(): Double = {
     1
   }
+
 
   /*
    * One way to calculate the drift in a monte carlo simulation
@@ -30,5 +32,4 @@ class Model(data: List[Double]) {
     b.mean() - (b.variance() / 2)
   }
 
-  def periodic_daily_return
 }

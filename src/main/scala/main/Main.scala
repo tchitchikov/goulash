@@ -8,14 +8,21 @@ object Main extends App {
   var tickers = List("CHOC", "SPY")
   var get = new Data(tickers)
 
-  for ((k,v) <- get.get_closing_prices()) {
-    var rm = new Model(v)
-    println(k, rm.volatility_eroded_historical_mean())
+  var stock_data = collection.mutable.Map[String, Any]()
 
+  for ((k,v) <- get.get_data("daily_periodic_return")) {
+    var rm = new Model(v)
+    var stat = new Basic(v)
+    var stockSummaryStats = Map(
+      "σ_of_returns" -> stat.standardDeviation(),
+      "σ²_of_returns" -> stat.variance(),
+      "volatility_eroded_historical_mean" -> rm.volatility_eroded_historical_mean()
+    )
+
+    stock_data(k) = stockSummaryStats
   }
 
-//  var rm = new Model()
-
+  println(stock_data)
 
 
 
