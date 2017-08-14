@@ -24,10 +24,11 @@ class Main:
             end_date=end_date
         )
         print(r)
+        dbs.normsinv()
         
         
 if __name__ == '__main__':
     TICKERS1 = ['CHOC', 'SJNK', 'HYGH', 'EMF', 'IYR', 'SPY']
     main_class = Main()
-    main_class(tickers=TICKERS1, start_date='2017-07-01', end_date='2017-07-31', pull_latest=True)
-    main_class(tickers=['AAPL', 'GOOG'], start_date='2017-07-01', end_date='2017-07-31', pull_latest=True)
+    main_class(tickers=TICKERS1, start_date='2017-07-01', end_date='2017-07-31', pull_latest=False)
+    main_class(tickers=['AAPL', 'GOOG'], start_date='2017-07-01', end_date='2017-07-31', pull_latest=False)

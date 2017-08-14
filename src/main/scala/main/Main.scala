@@ -10,6 +10,9 @@ object Main extends App {
 
   var stock_data = collection.mutable.Map[String, Map[String, Double]]()
 
+  val NORMSINV = data.Data.get_raw_data("NORMSINV")
+
+
   for ((k,v) <- data.Data.get_data("daily_periodic_return")) {
     var rm = new Model(v)
     var stat = new Basic(v)
@@ -27,7 +30,7 @@ object Main extends App {
   }
 
   for ((a,b) <- stock_data) {
-    var sim = new Simulation(stock_data(a))
+    var sim = new Simulation(stock_data(a), NORMSINV)
     stock_data(a) += ("MeanSimulation" -> sim.monteCarloSimulation())
   }
 
