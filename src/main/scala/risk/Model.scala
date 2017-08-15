@@ -38,14 +38,13 @@ class Model(data: List[Double]) {
 }
 
 class Simulation(datum: Map[String, Double], tempNormsInv: List[Double]) {
-  def monteCarloSimulation(): Double = {
+  def monteCarloSimulation(): List[Double] = {
     var outcomes = new ListBuffer[Double]()
     tempNormsInv.foreach { normsinv =>
       var exponent = (datum("μ_of_returns") - (datum("σ²_of_returns") / 2)) + (datum("σ_of_returns") * normsinv)
       var result = datum("LastClose") * math.pow(math.E, exponent)
       outcomes += result
     }
-    var b = new Basic(outcomes.toList)
-    b.mean()
+    outcomes.toList
   }
 }

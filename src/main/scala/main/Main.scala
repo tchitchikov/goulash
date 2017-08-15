@@ -31,7 +31,12 @@ object Main extends App {
 
   for ((a,b) <- stock_data) {
     var sim = new Simulation(stock_data(a), NORMSINV)
-    stock_data(a) += ("MeanSimulation" -> sim.monteCarloSimulation())
+    var simData = sim.monteCarloSimulation()
+    var simStat = new Basic(simData)
+    stock_data(a) += ("μ_simulation" -> simStat.mean())
+    stock_data(a) += ("σ_simulation" -> simStat.standardDeviation())
+    stock_data(a) += ("σ²_simulation" -> simStat.variance())
+
   }
 
   stock_data.foreach(println)
